@@ -1,9 +1,10 @@
 import React, { } from 'react';
 import Context from './Context';
 
-function Provider() {
+function Provider(e) {
+  const { children } = e;
   return (
-    <Context.Provider value={ values }>
+    <Context.Provider>
       {children}
     </Context.Provider>
   );
