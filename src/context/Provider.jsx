@@ -7,8 +7,15 @@ function Provider(e) {
     email: '',
     password: '',
   });
+  const [recipes, setRecipes] = useState([]);
 
-  const values = useMemo(() => ({ isValid, setIsValid, user, setUser }), [isValid, user]);
+  const values = useMemo(() => ({
+    isValid,
+    setIsValid,
+    user,
+    setUser,
+    recipes,
+    setRecipes }), [isValid, user, recipes]);
 
   const { children } = e;
   return (
