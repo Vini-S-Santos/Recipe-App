@@ -77,6 +77,7 @@ function ButtonFilters({ recipeType }) {
     </section>
   );
 }
+//
 
 ButtonFilters.propTypes = {
   recipeType: PropTypes.string.isRequired,
