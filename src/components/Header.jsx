@@ -46,14 +46,17 @@ export default function Header() {
       <p data-testid="page-title">{ pageTitle }</p>
       {
         searchIcon && (
-          <button type="button" data-testid="search-top-btn" onClick={ setSearch }>
-            <img src={ searchIconSVG } alt="Search" />
+          <button
+            type="button"
+            onClick={ setSearch }
+          >
+            <img src={ searchIconSVG } alt="Search" data-testid="search-top-btn" />
           </button>
         )
       }
       <Link to="/profile">
-        <button type="button" data-testid="profile-top-btn">
-          <img src={ profileIconSVG } alt="Profile" />
+        <button type="button">
+          <img src={ profileIconSVG } alt="Profile" data-testid="profile-top-btn" />
         </button>
       </Link>
       { activeSearch
