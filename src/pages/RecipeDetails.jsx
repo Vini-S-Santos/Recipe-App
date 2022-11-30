@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 import Ingredients from '../components/Ingredients';
 import fetchAPIs from '../services/fetchAPI';
 import Youtube from '../components/Youtube';
+import RecipeCard from '../components/RecipeCard';
+
+const recomendationRecipeNumber = 6;
 
 function RecipeDetails({ history: { location: { pathname } } }) {
   const [detailedRecipe, setDetailedRecipe] = useState({});
+  const [recomendations, setRecomendations] = useState([]);
   const [recipeType, setRecipeType] = useState('');
   const { id } = useParams();
 
@@ -15,10 +19,14 @@ function RecipeDetails({ history: { location: { pathname } } }) {
       if (pathname.includes('/meals')) {
         setRecipeType('Meals');
         const returnedRecipe = await fetchAPIs(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+        const recomendation = await fetchAPIs('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+        setRecomendations([...recomendation.drinks]);
         setDetailedRecipe(returnedRecipe.meals[0]);
       } else if (pathname.includes('/drinks')) {
         setRecipeType('Drinks');
         const returnedRecipe = await fetchAPIs(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
+        const recomendation = await fetchAPIs('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+        setRecomendations([...recomendation.meals]);
         setDetailedRecipe(returnedRecipe.drinks[0]);
       }
     };
@@ -57,6 +65,26 @@ function RecipeDetails({ history: { location: { pathname } } }) {
           />
         )
       }
+      <div>
+        { recomendations.map((recipe, index) => {
+          if (index < recomendationRecipeNumber) {
+            return (
+              <RecipeCard
+                key={ recipeType === 'Meals' ? recipe.idDrink : recipe.idMeal }
+                linkTestId={ `${index}-recomendation-card` }
+                nameTestId={ `${index}-recomendation-title` }
+                index={ index }
+                recipeId={ recipeType === 'Meals' ? recipe.idDrink : recipe.idMeal }
+                recipeImage={ recipeType === 'Meals'
+                  ? recipe.strDrinkThumb : recipe.strMealThumb }
+                recipeName={ recipeType === 'Meals' ? recipe.strDrink : recipe.strMeal }
+                recipeType={ recipeType }
+              />
+            );
+          }
+          return null;
+        })}
+      </div>
     </div>
   );
 }
