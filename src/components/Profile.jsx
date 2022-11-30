@@ -1,16 +1,21 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 import Footer from './Footer';
+import Header from './Header';
 
 function Profile() {
   const history = useHistory();
   const email = () => {
     const emailLocalStorage = JSON.parse(localStorage.getItem('user'));
-    return emailLocalStorage.email;
+    if (emailLocalStorage) {
+      return emailLocalStorage.email;
+    }
+    return '';
   };
 
   return (
     <div>
+      <Header />
       <p data-testid="profile-email">
         {
           email()

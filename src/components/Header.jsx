@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import searchIconSVG from '../images/searchIcon.svg';
 import profileIconSVG from '../images/profileIcon.svg';
+import SearchBar from './SearchBar';
 
 export default function Header() {
   const [activeSearch, setActiveSearch] = useState(false);
@@ -46,18 +47,31 @@ export default function Header() {
       <p data-testid="page-title">{ pageTitle }</p>
       {
         searchIcon && (
-          <button type="button" data-testid="search-top-btn" onClick={ setSearch }>
-            <img src={ searchIconSVG } alt="Search" />
+          <button
+            type="button"
+            onClick={ setSearch }
+          >
+            <img src={ searchIconSVG } alt="Search" data-testid="search-top-btn" />
           </button>
         )
       }
       <Link to="/profile">
-        <button type="button" data-testid="profile-top-btn">
-          <img src={ profileIconSVG } alt="Profile" />
+        <button type="button">
+          <img src={ profileIconSVG } alt="Profile" data-testid="profile-top-btn" />
         </button>
       </Link>
-      { activeSearch
-      && <input type="text" data-testid="search-input" /> }
+      {
+        activeSearch
+      && (
+        <div>
+          <input
+            type="text"
+            data-testid="search-input"
+          />
+          <SearchBar />
+        </div>
+      )
+      }
     </>
   );
 }

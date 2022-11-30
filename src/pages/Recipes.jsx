@@ -5,6 +5,7 @@ import RecipeCard from '../components/RecipeCard';
 import fetchAPIs from '../services/fetchAPI';
 import Context from '../context/Context';
 import ButtonFilters from '../components/ButtonFilters';
+import Header from '../components/Header';
 
 const recipeInitialNumbers = 12;
 
@@ -33,6 +34,7 @@ function Recipes({ history: { location: { pathname } } }) {
 
   return (
     <main>
+      <Header />
       <section>
         <ButtonFilters recipeType={ recipeType } />
         {
