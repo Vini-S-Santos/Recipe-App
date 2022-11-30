@@ -32,6 +32,8 @@ describe('testa funcionalidades dos botões de filtro', () => {
       json: () => Promise.resolve(beefMeals),
     }));
 
+    await waitFor(() => expect(screen.getByText(/beef/i)).toBeInTheDocument());
+
     const buttonBeef = screen.getByText('Beef');
 
     userEvent.click(buttonBeef);
