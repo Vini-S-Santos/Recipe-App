@@ -6,7 +6,7 @@ function RecipeCard({
   recipeId, recipeImage, recipeName, recipeType, index, linkTestId, nameTestId }) {
   return (
     <Link
-      to={ recipeType === 'Meals' ? `/meals/${recipeId}` : `/drinks/${recipeId}` }
+      to={ recipeType === 'Drinks' ? `/drinks/${recipeId}` : `/meals/${recipeId}` }
       data-testid={ linkTestId }
     >
       <div>
