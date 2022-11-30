@@ -1,0 +1,4 @@
+
+> recipes-app-test@1.0.0 cy
+> env CY_CLI=true cypress run
+
