@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import searchIconSVG from '../images/searchIcon.svg';
 import profileIconSVG from '../images/profileIcon.svg';
+import SearchBar from './SearchBar';
 
 export default function Header() {
   const [activeSearch, setActiveSearch] = useState(false);
@@ -59,8 +60,18 @@ export default function Header() {
           <img src={ profileIconSVG } alt="Profile" data-testid="profile-top-btn" />
         </button>
       </Link>
-      { activeSearch
-      && <input type="text" data-testid="search-input" /> }
+      {
+        activeSearch
+      && (
+        <div>
+          <input
+            type="text"
+            data-testid="search-input"
+          />
+          <SearchBar />
+        </div>
+      )
+      }
     </>
   );
 }
