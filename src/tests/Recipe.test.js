@@ -7,7 +7,7 @@ import meals from './mocks/meals';
 import mealCategorys from './mocks/mealsCategory';
 import drinks from './mocks/drinks';
 import drinkCategories from './mocks/drinkCategories';
-import beefMeals from './mocks/beefMeals';
+import beefMeal from './mocks/beefMeal';
 import cocktail from './mocks/cocktailDrinks';
 import Provider from '../context/Provider';
 
@@ -29,7 +29,7 @@ describe('testa funcionalidades dos botões de filtro', () => {
     await waitFor(() => expect(global.fetch).toBeCalledTimes(2));
 
     jest.spyOn(global, 'fetch').mockImplementationOnce(() => Promise.resolve({
-      json: () => Promise.resolve(beefMeals),
+      json: () => Promise.resolve(beefMeal),
     }));
 
     await waitFor(() => expect(screen.getByText(/beef/i)).toBeInTheDocument());
@@ -72,7 +72,9 @@ describe('testa funcionalidades dos botões de filtro', () => {
     jest.spyOn(global, 'fetch').mockImplementationOnce(() => Promise.resolve({
       json: () => Promise.resolve(cocktail),
     }));
-    const buttonCocktail = screen.getByTestId('Cocktail-category-filter');
+    const buttonCocktail = screen.getByRole('button', {
+      name: /cocktail/i,
+    });
 
     userEvent.click(buttonCocktail);
 
