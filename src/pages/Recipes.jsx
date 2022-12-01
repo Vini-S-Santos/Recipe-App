@@ -17,7 +17,7 @@ function Recipes({ history: { location: { pathname } } }) {
   useEffect(() => {
     const setInitalRecipes = async () => {
       if (pathname === '/meals') {
-        setRecipeType('Meals');
+        setRecipeType('meals');
         const data = await fetchAPIs('https://www.themealdb.com/api/json/v1/1/search.php?s=');
         const responseRecipes = [...Object.values(data)[0]];
         setRecipes(responseRecipes);
@@ -44,10 +44,10 @@ function Recipes({ history: { location: { pathname } } }) {
               linkTestId={ `${index}-recipe-card` }
               nameTestId={ `${index}-card-name` }
               index={ index }
-              recipeId={ recipeType === 'Meals' ? recipe.idMeal : recipe.idDrink }
-              recipeImage={ recipeType === 'Meals'
+              recipeId={ recipeType === 'meals' ? recipe.idMeal : recipe.idDrink }
+              recipeImage={ recipeType === 'meals'
                 ? recipe.strMealThumb : recipe.strDrinkThumb }
-              recipeName={ recipeType === 'Meals' ? recipe.strMeal : recipe.strDrink }
+              recipeName={ recipeType === 'meals' ? recipe.strMeal : recipe.strDrink }
               recipeType={ recipeType }
             />
           )) : <h1>Loading...</h1>
