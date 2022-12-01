@@ -7,7 +7,7 @@ import ShareButton from '../components/ShareButton';
 import FavoriteButton from '../components/FavoriteButton';
 import Context from '../context/Context';
 
-function RecipeDetails({ history: { location: { pathname }, push } }) {
+function RecipeInProgress({ history: { location: { pathname }, push } }) {
   const [detailedRecipe, setDetailedRecipe] = useState({});
   const [recipeType, setRecipeType] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -15,6 +15,10 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
   const { id } = useParams(); // hook usado para pegar parametros passados via url;
 
   const { isStarted, setIsStarted } = useContext(Context);
+
+  useEffect(() => {
+    setIsStarted(true);
+  }, []);
 
   useEffect(() => {
     const idFetch = async () => {
@@ -128,7 +132,7 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
     </main>
   );
 }
-RecipeDetails.propTypes = {
+RecipeInProgress.propTypes = {
   history: PropTypes.shape({
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
@@ -137,4 +141,4 @@ RecipeDetails.propTypes = {
   }).isRequired,
 };
 
-export default RecipeDetails;
+export default RecipeInProgress;
