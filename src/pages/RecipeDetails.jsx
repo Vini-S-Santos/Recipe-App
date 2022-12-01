@@ -33,8 +33,6 @@ function RecipeDetails({ history: { location: { pathname } } }) {
     idFetch();
   }, [pathname, id]);
 
-  console.log(detailedRecipe);
-
   return (
     <div>
       <img
