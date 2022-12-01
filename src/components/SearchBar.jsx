@@ -16,7 +16,7 @@ function SearchBar() {
 
   async function fetchAPI() {
     const AlertFound = (filtrando) => {
-      console.log(filtrando);
+      // console.log(filtrando);
 
       if (filtrando === null) {
         global.alert('Sorry, we haven\'t found any recipes for these filters.');
@@ -36,9 +36,8 @@ function SearchBar() {
     if (searchType === 'ingredient') {
       const filtrando = await ingredientSearch(searchInput, path);
       AlertFound(filtrando);
-      console.log(filtrando);
+      // console.log(filtrando);
     } if (searchType === 'name') {
-      console.log('tchau');
       const filtrando = await nameSearch(searchInput, path);
       AlertFound(filtrando);
     } if (searchType === 'letter') {
@@ -48,7 +47,7 @@ function SearchBar() {
       } else {
         const filtrando = await LetraSearch(searchInput, path);
         AlertFound(filtrando);
-        console.log(filtrando);
+        // console.log(filtrando);
       }
     }
   }
