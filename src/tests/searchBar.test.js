@@ -55,14 +55,40 @@ describe('Componente SearchBar', () => {
     const firstBeefLetter = await screen.findByTestId(img3);
     expect(firstBeefLetter).toBeInTheDocument();
     //
-    // userEvent.click(radioName);
-    // userEvent.clear(searchINP);
-    // expect(history.location.pathname).toBe('/meals/52977');
-    //
-    userEvent.click(radioIngredient);
+    userEvent.click(radioName);
     userEvent.clear(searchINP);
     userEvent.type(searchINP, 'Corba');
     userEvent.click(searchButton);
+    await waitFor(() => expect(history.location.pathname).toBe('/meals/52977'));
+    act(() => {
+      history.push('/meals');
+    });
+    //
+    const searchBTN1 = screen.getByTestId('search-top-btn');
+    userEvent.click(searchBTN1);
+    const searchINP1 = screen.getByTestId('search-input');
+    const radioIngredient1 = screen.getByTestId('ingredient-search-radio');
+    const radioLetter1 = screen.getByTestId('first-letter-search-radio');
+    const searchButton1 = screen.getByTestId('exec-search-btn');
+    userEvent.click(radioIngredient1);
+    userEvent.clear(searchINP1);
+    userEvent.type(searchINP1, 'Corba');
+    userEvent.click(searchButton1);
     await waitFor(() => expect(global.alert).toBeCalledWith('Sorry, we haven\'t found any recipes for these filters.'));
+    //
+    userEvent.click(radioLetter1);
+    userEvent.clear(searchINP1);
+    userEvent.type(searchINP1, 'as');
+    userEvent.click(searchButton1);
+    await waitFor(() => expect(global.alert).toBeCalledWith('Your search must have only 1 (one) character'));
+    //
+    const drinkButton = screen.getByTestId('drinks-bottom-btn');
+    const radioName2 = screen.getByTestId('name-search-radio');
+    userEvent.click(drinkButton);
+    userEvent.click(radioName2);
+    userEvent.clear(searchINP1);
+    userEvent.type(searchINP1, 'b-52');
+    userEvent.click(searchButton1);
+    await waitFor(() => expect(history.location.pathname).toBe('/drinks/15853'));
   });
 });
