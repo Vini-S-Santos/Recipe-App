@@ -6,10 +6,25 @@ import Login from './pages/Login';
 import Profile from './components/Profile';
 import Recipes from './pages/Recipes';
 import RecipeDetails from './pages/RecipeDetails';
+import RecipeInProgress from './pages/RecipeInProgress';
 
 function App() {
   return (
     <Switch>
+      <Route
+        exact
+        path="/drinks/:id/in-progress"
+        render={ (props) => (
+          <RecipeInProgress { ...props } />
+        ) }
+      />
+      <Route
+        exact
+        path="/meals/:id/in-progress"
+        render={ (props) => (
+          <RecipeInProgress { ...props } />
+        ) }
+      />
       <Route path="/done-recipes" component={ DoneRecipes } />
       <Route path="/favorite-recipes" component={ FavoriteRecipes } />
       <Route exact path="/" component={ Login } />
