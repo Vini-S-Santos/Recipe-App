@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import searchIconSVG from '../images/searchIcon.svg';
 import profileIconSVG from '../images/profileIcon.svg';
 import SearchBar from './SearchBar';
+import Context from '../context/Context';
 
 export default function Header() {
+  const { searchInput, setSearchInput } = useContext(Context);
   const [activeSearch, setActiveSearch] = useState(false);
   const [pageTitle, setPageTitle] = useState('');
   const [searchIcon, setSearchIcon] = useState(false);
@@ -67,6 +69,8 @@ export default function Header() {
           <input
             type="text"
             data-testid="search-input"
+            value={ searchInput }
+            onChange={ ({ target }) => setSearchInput(target.value) }
           />
           <SearchBar />
         </div>

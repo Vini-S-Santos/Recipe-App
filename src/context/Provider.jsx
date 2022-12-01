@@ -9,29 +9,22 @@ function Provider(e) {
   });
   const [recipes, setRecipes] = useState([]);
   const [searchType, setSearchType] = useState('ingredient');
-
-  const values = useMemo(() => {
-    function fetchAPI() {
-      if (searchType === 'ingredient') {
-        console.log('oi');
-      } else if (searchType === 'name') {
-        console.log('tchau');
-      } else if (searchType === 'letter') {
-        console.log('teh mais');
-      }
-    }
-    return {
-      isValid,
-      setIsValid,
-      user,
-      setUser,
-      recipes,
-      setRecipes,
-      searchType,
-      setSearchType,
-      fetchAPI,
-    };
-  }, [isValid, user, recipes, searchType, setSearchType]);
+  const [searchInput, setSearchInput] = useState('');
+  // const [filtered, setFiltered] = useState([]);
+  const values = useMemo(() => ({
+    isValid,
+    setIsValid,
+    user,
+    setUser,
+    recipes,
+    setRecipes,
+    searchType,
+    setSearchType,
+    searchInput,
+    setSearchInput,
+    // filtered,
+  }), [isValid, user, recipes, searchType,
+    setSearchType, searchInput, setSearchInput]);
 
   const { children } = e;
   return (
