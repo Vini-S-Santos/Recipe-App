@@ -13,7 +13,7 @@ function ButtonFilters({ recipeType }) {
 
   useEffect(() => {
     const getCategorys = async () => {
-      if (recipeType === 'Meals') {
+      if (recipeType === 'meals') {
         const response = await fetchAPIs('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
         const responseCategorys = [...response.meals];
         setCategorys(responseCategorys);
@@ -30,7 +30,7 @@ function ButtonFilters({ recipeType }) {
   const handleClick = async ({ target: { id } }) => {
     if (id === 'All' || id === currentFilter) {
       setCurrentFilter('All');
-      const url = recipeType === 'Meals'
+      const url = recipeType === 'meals'
         ? 'https://www.themealdb.com/api/json/v1/1/search.php?s='
         : 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
       const data = await fetchAPIs(url);
@@ -39,7 +39,7 @@ function ButtonFilters({ recipeType }) {
     }
     if (id !== 'All' && id !== currentFilter) {
       setCurrentFilter(id);
-      const url = recipeType === 'Meals'
+      const url = recipeType === 'meals'
         ? `https://www.themealdb.com/api/json/v1/1/filter.php?c=${id}`
         : `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${id}`;
       const data = await fetchAPIs(url);
