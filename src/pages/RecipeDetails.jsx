@@ -8,6 +8,7 @@ import RecipeCard from '../components/RecipeCard';
 import FavoriteButton from '../components/FavoriteButton';
 import ShareButton from '../components/ShareButton';
 import Context from '../context/Context';
+import styles from './styles/RecipeDetails.module.css';
 
 const recomendationRecipeNumber = 6;
 
@@ -106,6 +107,7 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
         !isFinishedRecipe && (
           <div>
             <button
+              className={ styles.startRecipeButton }
               type="button"
               data-testid="start-recipe-btn"
               onClick={ handleClick }
@@ -131,14 +133,14 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
           />
         )
       }
-      <div>
+      <div className={ styles.recomentationsContainer }>
         { recomendations.map((recipe, index) => {
           if (index < recomendationRecipeNumber) {
             return (
               <RecipeCard
                 key={ recipeType === 'meals' ? recipe.idDrink : recipe.idMeal }
-                linkTestId={ `${index}-recomendation-card` }
-                nameTestId={ `${index}-recomendation-title` }
+                linkTestId={ `${index}-recommendation-card` }
+                nameTestId={ `${index}-recommendation-title` }
                 index={ index }
                 recipeId={ recipeType === 'meals' ? recipe.idDrink : recipe.idMeal }
                 recipeImage={ recipeType === 'meals'
