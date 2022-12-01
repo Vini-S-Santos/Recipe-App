@@ -15,7 +15,7 @@ export default function Header() {
   useEffect(() => {
     switch (pathname) {
     case '/meals':
-      setPageTitle('Meals');
+      setPageTitle('meals');
       setSearchIcon(true);
       break;
     case '/drinks':
