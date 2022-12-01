@@ -12,6 +12,7 @@ function Provider(e) {
   const [searchInput, setSearchInput] = useState('');
   const [favorites, setFavorites] = useState([]);
   const [isStarted, setIsStarted] = useState(false);
+  const [isInProgress, setIsInProgress] = useState(false);
   // const [filtered, setFiltered] = useState([]);
   const values = useMemo(() => ({
     isValid,
@@ -28,6 +29,8 @@ function Provider(e) {
     setFavorites,
     isStarted,
     setIsStarted,
+    isInProgress,
+    setIsInProgress,
     // filtered,
   }), [isValid, user, recipes, searchType,
     setSearchType,
@@ -36,7 +39,9 @@ function Provider(e) {
     isStarted,
     setIsStarted,
     favorites,
-    setFavorites]);
+    setFavorites,
+    isInProgress,
+    setIsInProgress]);
 
   const { children } = e;
   return (

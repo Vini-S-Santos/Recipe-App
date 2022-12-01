@@ -16,9 +16,13 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
   const [recomendations, setRecomendations] = useState([]);
   const [recipeType, setRecipeType] = useState('');
   const [isFinishedRecipe, setIsFinishedRecipe] = useState(false);
-  const [isInProgress, setIsInProgress] = useState(false);
   const { id } = useParams();
-  const { isStarted, setIsStarted } = useContext(Context);
+  const {
+    isStarted,
+    setIsStarted,
+    isInProgress,
+    setIsInProgress,
+  } = useContext(Context);
 
   useEffect(() => {
     const idFetch = async () => {
@@ -56,7 +60,7 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
     if (doneRecipes.some(({ id: doneId }) => id === doneId)) {
       setIsFinishedRecipe(true);
     }
-    if (recipeType === 'meal' && inProgressRecipes.meals) {
+    if (recipeType === 'meals' && inProgressRecipes.meals) {
       const inProgressIds = Object.keys(inProgressRecipes.meals);
       setIsInProgress(inProgressIds.some((inProgressId) => inProgressId === id));
     }
