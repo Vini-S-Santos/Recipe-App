@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
 import renderWithRouter from '../helpers/renderWithRouter';
@@ -7,8 +7,10 @@ import Provider from '../context/Provider';
 // import beefMeals from './mocks/beefMeals';
 
 describe('Componente SearchBar', () => {
+  global.alert = jest.fn();
   test('Testando Filtro', async () => {
     // viagem ate o /meals
+    const img3 = '0-card-img';
     const { history } = renderWithRouter(<Provider><App /></Provider>);
     const emailInput = screen.getByTestId('email-input');
     const passwordInput = screen.getByTestId('password-input');
@@ -37,16 +39,30 @@ describe('Componente SearchBar', () => {
     expect(searchButton).toBeInTheDocument();
     userEvent.type(searchINP, 'beef');
     userEvent.click(searchButton);
-    const firstBeefRecipe = await screen.findByTestId('0-card-img');
+    const firstBeefRecipe = await screen.findByTestId(img3);
     expect(firstBeefRecipe).toBeInTheDocument();
     userEvent.click(radioName);
+    userEvent.clear(searchINP);
     userEvent.type(searchINP, 'beef');
-    const firstBeefName = await screen.findByTestId('0-card-img');
+    userEvent.click(searchButton);
+    const firstBeefName = await screen.findByTestId(img3);
     expect(firstBeefName).toBeInTheDocument();
     //
     userEvent.click(radioLetter);
+    userEvent.clear(searchINP);
     userEvent.type(searchINP, 'b');
-    const firstBeefLetter = await screen.findByTestId('0-card-img');
+    userEvent.click(searchButton);
+    const firstBeefLetter = await screen.findByTestId(img3);
     expect(firstBeefLetter).toBeInTheDocument();
+    //
+    // userEvent.click(radioName);
+    // userEvent.clear(searchINP);
+    // expect(history.location.pathname).toBe('/meals/52977');
+    //
+    userEvent.click(radioIngredient);
+    userEvent.clear(searchINP);
+    userEvent.type(searchINP, 'Corba');
+    userEvent.click(searchButton);
+    await waitFor(() => expect(global.alert).toBeCalledWith('Sorry, we haven\'t found any recipes for these filters.'));
   });
 });
