@@ -1,8 +1,57 @@
 import React, { useContext } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import Context from '../context/Context';
 
+import {
+  ingredientSearch,
+  nameSearch,
+  LetraSearch,
+} from '../services/fetchFilter';
+
 function SearchBar() {
-  const { searchType, setSearchType, fetchAPI } = useContext(Context);
+  const { searchType, setSearchType, searchInput, setRecipes } = useContext(Context);
+  const history = useHistory();
+  const location = useLocation();
+  const path = location.pathname;
+
+  async function fetchAPI() {
+    const AlertFound = (filtrando) => {
+      console.log(filtrando);
+
+      if (filtrando === null) {
+        global.alert('Sorry, we haven\'t found any recipes for these filters.');
+        return history.push('/');
+      }
+      if (filtrando.length === 1) {
+        if (path === '/meals') {
+          return history.push(`${path}/${filtrando[0].idMeal}`);
+        }
+        return history.push(`${path}/${filtrando[0].idDrink}`);
+      }
+      if (filtrando.length > 1) {
+        return setRecipes(filtrando);
+      }
+    };
+
+    if (searchType === 'ingredient') {
+      const filtrando = await ingredientSearch(searchInput, path);
+      AlertFound(filtrando);
+      console.log(filtrando);
+    } if (searchType === 'name') {
+      console.log('tchau');
+      const filtrando = await nameSearch(searchInput, path);
+      AlertFound(filtrando);
+    } if (searchType === 'letter') {
+      if (searchInput.length > 1) {
+        global.alert('Your search must have only 1 (one) character');
+        history.push('/');
+      } else {
+        const filtrando = await LetraSearch(searchInput, path);
+        AlertFound(filtrando);
+        console.log(filtrando);
+      }
+    }
+  }
   return (
     <div>
       <form>
@@ -41,7 +90,7 @@ function SearchBar() {
         <button
           type="button"
           data-testid="exec-search-btn"
-          onClick={ () => fetchAPI() }
+          onClick={ () => { fetchAPI(); } }
         >
           Search
 
