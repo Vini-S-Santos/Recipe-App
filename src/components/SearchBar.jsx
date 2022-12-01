@@ -19,8 +19,7 @@ function SearchBar() {
       // console.log(filtrando);
 
       if (filtrando === null) {
-        global.alert('Sorry, we haven\'t found any recipes for these filters.');
-        return history.push('/');
+        return global.alert('Sorry, we haven\'t found any recipes for these filters.');
       }
       if (filtrando.length === 1) {
         if (path === '/meals') {
@@ -43,7 +42,6 @@ function SearchBar() {
     } if (searchType === 'letter') {
       if (searchInput.length > 1) {
         global.alert('Your search must have only 1 (one) character');
-        history.push('/');
       } else {
         const filtrando = await LetraSearch(searchInput, path);
         AlertFound(filtrando);
