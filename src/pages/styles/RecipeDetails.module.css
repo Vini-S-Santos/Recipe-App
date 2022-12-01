@@ -1,17 +1,17 @@
 .recomentationsContainer {
-    margin-left: 10px;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    overflow-x: auto;
-    width: 210px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-left: 10px;
+  overflow-x: auto;
+  width: 210px;
 }
 
 .recomentationsContainer img {
-    width: 100px;
+  width: 100px;
 }
 
 .startRecipeButton {
-    position: fixed;
-    bottom: 0;
+  bottom: 0;
+  position: fixed;
 }
