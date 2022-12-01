@@ -12,13 +12,13 @@ function FavoriteButton({ recipe, recipeType, recipeId, index, pathname }) {
   const saveRecipe = () => {
     const currentFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
     const newFavorite = {
-      id: recipeType === 'Meals' ? recipe.idMeal : recipe.idDrink,
+      id: recipeType === 'meals' ? recipe.idMeal : recipe.idDrink,
       type: recipeType,
-      nationality: recipeType === 'Meals' ? recipe.strArea : '',
+      nationality: recipeType === 'meals' ? recipe.strArea : '',
       category: recipe.strCategory,
-      alcoholicOrNot: recipeType === 'Meals' ? '' : recipe.strAlcoholic,
-      name: recipeType === 'Meals' ? recipe.strMeal : recipe.strDrink,
-      image: recipeType === 'Meals' ? recipe.strMealThumb : recipe.strDrinkThumb,
+      alcoholicOrNot: recipeType === 'meals' ? '' : recipe.strAlcoholic,
+      name: recipeType === 'meals' ? recipe.strMeal : recipe.strDrink,
+      image: recipeType === 'meals' ? recipe.strMealThumb : recipe.strDrinkThumb,
     };
 
     localStorage.setItem('favoriteRecipes', JSON.stringify([

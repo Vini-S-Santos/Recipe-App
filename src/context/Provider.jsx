@@ -30,7 +30,13 @@ function Provider(e) {
     setIsStarted,
     // filtered,
   }), [isValid, user, recipes, searchType,
-    setSearchType, searchInput, setSearchInput]);
+    setSearchType,
+    searchInput,
+    setSearchInput,
+    isStarted,
+    setIsStarted,
+    favorites,
+    setFavorites]);
 
   const { children } = e;
   return (
