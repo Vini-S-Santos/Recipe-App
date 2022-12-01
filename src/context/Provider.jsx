@@ -10,6 +10,8 @@ function Provider(e) {
   const [recipes, setRecipes] = useState([]);
   const [searchType, setSearchType] = useState('ingredient');
   const [searchInput, setSearchInput] = useState('');
+  const [favorites, setFavorites] = useState([]);
+  const [isStarted, setIsStarted] = useState(false);
   // const [filtered, setFiltered] = useState([]);
   const values = useMemo(() => ({
     isValid,
@@ -22,6 +24,10 @@ function Provider(e) {
     setSearchType,
     searchInput,
     setSearchInput,
+    favorites,
+    setFavorites,
+    isStarted,
+    setIsStarted,
     // filtered,
   }), [isValid, user, recipes, searchType,
     setSearchType, searchInput, setSearchInput]);
