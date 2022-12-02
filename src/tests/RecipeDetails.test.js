@@ -34,5 +34,7 @@ describe('Testando a página Recipe Details', () => {
     expect(favoriteButton).toHaveAttribute('src', 'whiteHeartIcon.svg');
     const recipeTitle = await screen.findByTestId('recipe-title');
     expect(recipeTitle).toBeInTheDocument();
+    const ingredientstList = await screen.findByRole('list');
+    expect(ingredientstList).toBeInTheDocument();
   });
 });
