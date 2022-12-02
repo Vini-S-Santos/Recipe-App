@@ -36,5 +36,7 @@ describe('Testando a página Recipe Details', () => {
     expect(recipeTitle).toBeInTheDocument();
     const ingredientstList = await screen.findByRole('list');
     expect(ingredientstList).toBeInTheDocument();
+    const burek = await screen.findByText(/Burek/i);
+    expect(burek).toBeInTheDocument();
   });
 });
