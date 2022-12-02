@@ -81,4 +81,16 @@ describe('Testando a página Recipe Details', () => {
       expect(localStorage.getItem('favoriteRecipes')).not.toBeNull();
     });
   });
+  test('4 - Verifica o funcionamento do botão Favoritos e se a receita é armazenada no localStorage corretamente', async () => {
+    const { history } = renderWithRouter(<Provider><App /></Provider>);
+    history.push('meals/53060/in-progress');
+
+    const fylo = await screen.findByText(/filo pastry: 1 packet/i);
+    expect(fylo).toBeInTheDocument();
+    expect(screen.getByTestId('recipe-photo')).toBeDefined();
+    const startBtn = screen.getByRole('button', {
+      name: /finish recipe/i,
+    });
+    userEvent.click(startBtn);
+  });
 });
