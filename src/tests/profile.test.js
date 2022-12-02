@@ -55,4 +55,13 @@ describe('Página de login', () => {
     userEvent.click(logoutBTN2);
     expect(history.location.pathname).toBe('/');
   });
+  test('Testando email', () => {
+    const { history } = renderWithRouter(<Provider><App /></Provider>);
+    act(() => {
+      history.push('/profile');
+    });
+    expect(history.location.pathname).toBe('/profile');
+    const emailLocalStorage = localStorage.getItem('');
+    expect(emailLocalStorage).toBeNull();
+  });
 });
