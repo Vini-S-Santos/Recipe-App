@@ -19,5 +19,5 @@ function Youtube({ embedId }) {
   );
 }
 
-Youtube.propTypes = { embedId: PropTypes.string.isRequired };
+Youtube.propTypes = { embedId: PropTypes.string }.isRequired;
 export default Youtube;

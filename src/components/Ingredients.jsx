@@ -9,7 +9,7 @@ function IngredientsRecipe({ detailedRecipe, isStarted, recipeType, Id, setIsDis
   useEffect(() => {
     if (!JSON.parse(localStorage.getItem('inProgressRecipes'))) {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
-        cocktails: {},
+        drinks: {},
         meals: {},
       }));
     }
@@ -22,10 +22,10 @@ function IngredientsRecipe({ detailedRecipe, isStarted, recipeType, Id, setIsDis
         .filter((recipeInProgress) => recipeInProgress[0] === Id)
         .map((recipeIngredients) => recipeIngredients[1]);
       setProgressRecipe(progress[0] ? [...progress[0]] : []);
-    } else {
-      setProgressType('cocktails');
+    } else if (recipeType === 'drinks') {
+      setProgressType('drinks');
       const recipesInProgress = Object
-        .entries(JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails);
+        .entries(JSON.parse(localStorage.getItem('inProgressRecipes')).drinks);
       const progress = recipesInProgress
         .filter((recipeInProgress) => recipeInProgress[0] === Id)
         .map((recipeIngredients) => recipeIngredients[1]);
