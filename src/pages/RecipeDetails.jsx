@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Ingredients from '../components/Ingredients';
 import fetchAPIs from '../services/fetchAPI';
-import Youtube from '../components/Youtube';
 import RecipeCard from '../components/RecipeCard';
 import FavoriteButton from '../components/FavoriteButton';
 import ShareButton from '../components/ShareButton';
@@ -70,7 +69,7 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
       const inProgress = inProgressIds.some((inProgressId) => inProgressId === id);
       setIsInProgress(inProgress);
     }
-  }, [id, recipeType]);
+  }, [id, recipeType, setIsInProgress]);
 
   const handleClick = () => {
     push(`/${recipeType}/${id}/in-progress`);
@@ -127,11 +126,16 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
       />
       <p data-testid="instructions">{detailedRecipe.strInstructions}</p>
       {
-        (recipeType === 'meals') && (
-          <Youtube
-            detailedRecipe={ detailedRecipe }
-          />
-        )
+        detailedRecipe.strYoutube
+        && <iframe
+          data-testid="video"
+          width="560"
+          height="315"
+          src={ `${detailedRecipe.strYoutube.replace('watch?v=', 'embed/')}` }
+          title="YouTube video player"
+          frameBorder="0"
+          allowFullScreen
+        />
       }
       <div className={ styles.recomentationsContainer }>
         { recomendations.map((recipe, index) => {
