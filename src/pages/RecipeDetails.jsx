@@ -76,8 +76,6 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
     setIsStarted(true);
   };
 
-  console.log(detailedRecipe);
-
   return (
     <div>
       <img
