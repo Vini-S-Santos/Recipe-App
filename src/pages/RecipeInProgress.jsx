@@ -29,7 +29,7 @@ function RecipeInProgress({ history: { location: { pathname }, push } }) {
         setIsLoading(false);
       }
       if (pathname.includes('/drinks')) {
-        setRecipeType('drink');
+        setRecipeType('drinks');
         const returnedRecipe = await fetchAPIs(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
         setDetailedRecipe(returnedRecipe.drinks[0]);
         setIsLoading(false);
