@@ -4,6 +4,8 @@ import Context from '../context/Context';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
+const magicNumber = -1;
+
 function FavoriteButton({ recipe, recipeType, recipeId, index, pathname }) {
   const { setFavorites } = useContext(Context);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -13,7 +15,7 @@ function FavoriteButton({ recipe, recipeType, recipeId, index, pathname }) {
     const currentFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
     const newFavorite = {
       id: recipeType === 'meals' ? recipe.idMeal : recipe.idDrink,
-      type: recipeType,
+      type: recipeType.slice(0, magicNumber),
       nationality: recipeType === 'meals' ? recipe.strArea : '',
       category: recipe.strCategory,
       alcoholicOrNot: recipeType === 'meals' ? '' : recipe.strAlcoholic,
