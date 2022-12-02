@@ -7,6 +7,8 @@ import ShareButton from '../components/ShareButton';
 import FavoriteButton from '../components/FavoriteButton';
 import Context from '../context/Context';
 
+const magicNumber = -1;
+
 function RecipeInProgress({ history: { location: { pathname }, push } }) {
   const [detailedRecipe, setDetailedRecipe] = useState({});
   const [recipeType, setRecipeType] = useState('');
@@ -29,7 +31,7 @@ function RecipeInProgress({ history: { location: { pathname }, push } }) {
         setIsLoading(false);
       }
       if (pathname.includes('/drinks')) {
-        setRecipeType('drink');
+        setRecipeType('drinks');
         const returnedRecipe = await fetchAPIs(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
         setDetailedRecipe(returnedRecipe.drinks[0]);
         setIsLoading(false);
@@ -43,21 +45,18 @@ function RecipeInProgress({ history: { location: { pathname }, push } }) {
       localStorage.setItem('doneRecipes', JSON.stringify([]));
     }
     const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
     const currentDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
 
     const finishedRecipe = {
       id: recipeType === 'meals' ? detailedRecipe.idMeal : detailedRecipe.idDrink,
-      type: recipeType,
+      type: recipeType.slice(0, magicNumber),
       nationality: recipeType === 'meals' ? detailedRecipe.strArea : '',
       category: detailedRecipe.strCategory,
       alcoholicOrNot: recipeType === 'meals' ? '' : detailedRecipe.strAlcoholic,
       name: recipeType === 'meals' ? detailedRecipe.strMeal : detailedRecipe.strDrink,
       image: recipeType === 'meals'
         ? detailedRecipe.strMealThumb : detailedRecipe.strDrinkThumb,
-      doneDate: `${day}/${month}/${year}`,
+      doneDate: date,
       tags: recipeType === 'meals' ? detailedRecipe.strTags.split(',') : [],
     };
 

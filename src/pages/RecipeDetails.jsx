@@ -49,7 +49,7 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
     }
     if (!JSON.parse(localStorage.getItem('inProgressRecipes'))) {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
-        cocktails: {},
+        drinks: {},
         meals: {},
       }));
     }
@@ -64,8 +64,8 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
       const inProgressIds = Object.keys(inProgressRecipes.meals);
       setIsInProgress(inProgressIds.some((inProgressId) => inProgressId === id));
     }
-    if (recipeType === 'drink' && inProgressRecipes.cocktails) {
-      const inProgressIds = Object.keys(inProgressRecipes.cocktails);
+    if (recipeType === 'drinks' && inProgressRecipes.drinks) {
+      const inProgressIds = Object.keys(inProgressRecipes.drinks);
       const inProgress = inProgressIds.some((inProgressId) => inProgressId === id);
       setIsInProgress(inProgress);
     }
@@ -112,7 +112,7 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
               onClick={ handleClick }
             >
               {
-                isInProgress ? 'CONTINUE RECIPE' : 'START RECIPE'
+                isInProgress ? 'Continue Recipe' : 'START RECIPE'
               }
             </button>
           </div>
