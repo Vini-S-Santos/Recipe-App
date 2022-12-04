@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import './styles/Ingredients.css';
 
 function IngredientsRecipe({ detailedRecipe, isStarted, recipeType, Id, setIsDisabled }) {
   const [ingredients, setIngredients] = useState([]);
@@ -66,7 +67,7 @@ function IngredientsRecipe({ detailedRecipe, isStarted, recipeType, Id, setIsDis
     setProgressRecipe([...progress[0]]);
   };
 
-  const handleChange = ({ target: { name, checked } }) => {
+  const handleChange = ({ target }) => {
     const recipesInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (!recipesInProgress[progressType][Id]) {
       localStorage.setItem('inProgressRecipes', JSON.stringify({
@@ -77,14 +78,19 @@ function IngredientsRecipe({ detailedRecipe, isStarted, recipeType, Id, setIsDis
         },
       }));
     }
-    if (checked) {
-      saveProgress(name, 'save');
+    if (target.checked) {
+      saveProgress(target.name, 'save');
     } else {
-      saveProgress(name, 'delete');
+      saveProgress(target.name, 'delete');
+      target.parentElement.style.textDecoration = 'none';
     }
   };
 
   useEffect(() => {
+    document.querySelectorAll('.selected').forEach((element) => {
+      element.parentElement.style.textDecoration = 'line-through solid rgb(0, 0, 0)';
+    });
+
     if (progressRecipe.length === ingredients.length) {
       setIsDisabled(false);
     } else {

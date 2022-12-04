@@ -59,7 +59,7 @@ export default function Header() {
       }
       <Link to="/profile">
         <button type="button">
-          <img src={ profileIconSVG } alt="Profile" data-testid="profile-top-btn" />
+          <img src={ profileIconSVG } data-testid="profile-top-btn" alt="Profile" />
         </button>
       </Link>
       {
