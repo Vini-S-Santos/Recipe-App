@@ -9,7 +9,7 @@ const twoThousand = 2000;
 
 export default function DoneRecipes() {
   const [doneRecipes, setDoneRecipes] = useState(
-    JSON.parse(localStorage.getItem('doneRecipes')),
+    JSON.parse(localStorage.getItem('doneRecipes') || '[]'),
   );
   const [linkCopied, setLinkCopied] = useState('');
 
@@ -38,7 +38,7 @@ export default function DoneRecipes() {
   }
 
   function filterAll() {
-    setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
+    setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes') || '[]'));
   }
 
   return (
