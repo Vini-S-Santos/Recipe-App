@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
@@ -26,26 +26,30 @@ describe('Testa a tela RecipeInProgress', () => {
       initialEntries: ['/meals/53013/in-progress'],
     });
 
+    await waitFor(() => expect(screen.getByRole('button', {
+      name: /finish recipe/i,
+    })).toBeInTheDocument());
+
     const finishButton = screen.getByRole('button', {
       name: /finish recipe/i,
     });
 
     expect(finishButton).toBeDefined();
 
-    const firstIngredient = screen.findByTestId('0-ingredient');
-    const secondIngredient = screen.findByTestId('1-ingredient');
-    const thirdIngredient = screen.findByTestId('2-ingredient');
-    const bedroomIngredient = screen.findByTestId('3-ingredient');
-    const fifthIngredient = screen.findByTestId('4-ingredient');
-    const sixthIngredient = screen.findByTestId('5-ingredient');
-    const seventhIngredient = screen.findByTestId('6-ingredient');
-    const eighthIngredient = screen.findByTestId('7-ingredient');
-    const ninthIngredient = screen.findByTestId('8-ingredient');
-    const tenthIngredient = screen.findByTestId('9-ingredient');
-    const eleventhIngredient = screen.findByTestId('10-ingredient');
-    const TwelfthIngredient = screen.findByTestId('11-ingredient');
-    const ThirteenthIngredient = screen.findByTestId('12-ingredient');
-    const fourteenthIngredient = screen.findByTestId('13-ingredient');
+    const firstIngredient = screen.findByTestId('0-ingredient-step');
+    const secondIngredient = screen.findByTestId('1-ingredient-step');
+    const thirdIngredient = screen.findByTestId('2-ingredient-step');
+    const bedroomIngredient = screen.findByTestId('3-ingredient-step');
+    const fifthIngredient = screen.findByTestId('4-ingredient-step');
+    const sixthIngredient = screen.findByTestId('5-ingredient-step');
+    const seventhIngredient = screen.findByTestId('6-ingredient-step');
+    const eighthIngredient = screen.findByTestId('7-ingredient-step');
+    const ninthIngredient = screen.findByTestId('8-ingredient-step');
+    const tenthIngredient = screen.findByTestId('9-ingredient-step');
+    const eleventhIngredient = screen.findByTestId('10-ingredient-step');
+    const TwelfthIngredient = screen.findByTestId('11-ingredient-step');
+    const ThirteenthIngredient = screen.findByTestId('12-ingredient-step');
+    const fourteenthIngredient = screen.findByTestId('13-ingredient-step');
 
     expect(firstIngredient).toBeDefined();
     expect(secondIngredient).toBeDefined();
@@ -88,16 +92,20 @@ describe('Testa a tela RecipeInProgress', () => {
       initialEntries: [pathDrinck],
     });
 
+    await waitFor(() => expect(screen.getByTestId('finish-recipe-btn')).toBeInTheDocument());
+
     const finishButton = screen.getByRole('button', {
       name: /finish recipe/i,
     });
 
     expect(finishButton).toBeDefined();
 
-    const firstIngredient = screen.findByTestId('0-ingredient');
-    const secondIngredient = screen.findByTestId('1-ingredient');
-    const thirdIngredient = screen.findByTestId('2-ingredient');
-    const bedroomIngredient = screen.findByTestId('3-ingredient');
+    await waitFor(() => expect(screen.getByText(/finish recipe/i)).toBeInTheDocument());
+
+    const firstIngredient = screen.findByTestId('0-ingredient-step');
+    const secondIngredient = screen.findByTestId('1-ingredient-step');
+    const thirdIngredient = screen.findByTestId('2-ingredient-step');
+    const bedroomIngredient = screen.findByTestId('3-ingredient-step');
 
     expect(firstIngredient).toBeDefined();
     expect(secondIngredient).toBeDefined();

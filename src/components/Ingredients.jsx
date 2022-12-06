@@ -101,9 +101,11 @@ function IngredientsRecipe({ detailedRecipe, isStarted, recipeType, Id, setIsDis
   return (
     <section>
       <h4>Ingredients</h4>
+
       {
         isStarted ? ingredients.map((ingredient, index) => (
           <label
+            className="ch"
             key={ ingredient }
             htmlFor={ `${index}-ingredient` }
             data-testid={ `${index}-ingredient-step` }
@@ -119,7 +121,9 @@ function IngredientsRecipe({ detailedRecipe, isStarted, recipeType, Id, setIsDis
                 .some((ingredientNumber) => ingredientNumber === index.toString())
                 ? 'selected' : null }
             />
+
             { `${ingredient[1]}: ${ingredient[0]}` }
+
           </label>
         )) : (
           <ul>
@@ -137,6 +141,7 @@ function IngredientsRecipe({ detailedRecipe, isStarted, recipeType, Id, setIsDis
           </ul>
         )
       }
+
     </section>
   );
 }

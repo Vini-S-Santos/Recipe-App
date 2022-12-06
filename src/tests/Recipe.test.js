@@ -72,6 +72,11 @@ describe('testa funcionalidades dos botões de filtro', () => {
     jest.spyOn(global, 'fetch').mockImplementationOnce(() => Promise.resolve({
       json: () => Promise.resolve(cocktail),
     }));
+
+    await waitFor(() => expect(screen.getByRole('button', {
+      name: /cocktail/i,
+    })).toBeInTheDocument());
+
     const buttonCocktail = screen.getByRole('button', {
       name: /cocktail/i,
     });
