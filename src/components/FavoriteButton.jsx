@@ -7,9 +7,10 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 const magicNumber = -1;
 
 function FavoriteButton({ recipe, recipeType, recipeId, index, pathname }) {
-  const { setFavorites } = useContext(Context);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const { setFavorites, favoriteRecipes, setFavoriteRecipes } = useContext(Context);
+  const [isFavorite,
+    setIsFavorite] = useState(false);
+  // const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   const saveRecipe = () => {
     const currentFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
