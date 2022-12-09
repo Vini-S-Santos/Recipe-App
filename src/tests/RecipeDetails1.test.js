@@ -39,9 +39,7 @@ describe('Testando a página Recipe Details', () => {
     const { history } = renderWithRouter(<Provider><App /></Provider>);
     history.push('/drinks/178319');
 
-    await waitFor(() => expect(screen.getByRole('button', {
-      name: /continue recipe/i,
-    })).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText(/continue recipe/i)).toBeInTheDocument());
 
     const button = screen.getByTestId('start-recipe-btn');
 
