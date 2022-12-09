@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import Context from '../context/Context';
-import ShareFavorites from '../components/ShareFavorites';
+import ShareButton from '../components/ShareButton';
 
-function FavoriteRecipes() {
+function FavoriteRecipes({ history: { location: { pathname } } }) {
   const { favoriteRecipes, setFavoriteRecipes } = useContext(Context);
   const [selectedFilter, setSelectedFilter] = useState('');
 
@@ -79,7 +80,12 @@ function FavoriteRecipes() {
                     : recipe.alcoholicOrNot }
                 </p>
                 <div>
-                  <ShareFavorites recipe={ recipe } index={ index } />
+                  <ShareButton
+                    index={ index }
+                    pathname={ pathname }
+                    type={ recipe.type }
+                    id={ recipe.id }
+                  />
                 </div>
 
                 <button
@@ -106,4 +112,12 @@ function FavoriteRecipes() {
     </div>
   );
 }
+FavoriteRecipes.propTypes = {
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
 export default FavoriteRecipes;
