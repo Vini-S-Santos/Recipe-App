@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 // import copy from 'clipboard-copy';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import styles from './styles/DoneRecipes.module.css';
 import ShareButton from '../components/ShareButton';
-
 // const twoThousand = 2000;
 
 function DoneRecipes({ history: { location: { pathname } } }) {
@@ -96,7 +96,6 @@ DoneRecipes.propTypes = {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
-    push: PropTypes.func.isRequired,
   }).isRequired,
 };
 
