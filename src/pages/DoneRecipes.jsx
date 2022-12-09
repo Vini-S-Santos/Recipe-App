@@ -1,26 +1,26 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import copy from 'clipboard-copy';
+// import copy from 'clipboard-copy';
+import PropTypes from 'prop-types';
 import Header from '../components/Header';
-import shareButton from '../images/shareIcon.svg';
 import styles from './styles/DoneRecipes.module.css';
+import ShareButton from '../components/ShareButton';
+// const twoThousand = 2000;
 
-const twoThousand = 2000;
-
-export default function DoneRecipes() {
+function DoneRecipes({ history: { location: { pathname } } }) {
   const [doneRecipes, setDoneRecipes] = useState(
     JSON.parse(localStorage.getItem('doneRecipes') || '[]'),
   );
-  const [linkCopied, setLinkCopied] = useState('');
+  // const [linkCopied, setLinkCopied] = useState('');
 
-  function whenClickShareBtn(e) {
-    setLinkCopied('Link copied!');
-    copy(`http://localhost:3000/${e.target.id}`);
-    setTimeout(() => {
-      setLinkCopied('');
-    }, twoThousand);
-  }
-
+  // function whenClickShareBtn(e) {
+  //   setLinkCopied('Link copied!');
+  //   copy(`http://localhost:3000/${e.target.id}`);
+  //   setTimeout(() => {
+  //     setLinkCopied('');
+  //   }, twoThousand);
+  // }
+  console.log(doneRecipes);
   function filterMeals() {
     setDoneRecipes(
       JSON.parse(localStorage.getItem('doneRecipes')).filter(
@@ -38,7 +38,7 @@ export default function DoneRecipes() {
   }
 
   function filterAll() {
-    setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes') || '[]'));
+    setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
   }
 
   return (
@@ -74,20 +74,12 @@ export default function DoneRecipes() {
             <p data-testid={ `${index}-horizontal-name` }>{element.name}</p>
           </Link>
           <p data-testid={ `${index}-horizontal-done-date` }>{element.doneDate}</p>
-          <button
-            id={ `${element.type}s/${element.id}` }
-            type="button"
-            data-testid={ `${index}-horizontal-share-btn` }
-            src={ shareButton }
-            onClick={ whenClickShareBtn }
-          >
-            <img
-              id={ `${element.type}s/${element.id}` }
-              src={ shareButton }
-              alt="Share button"
-            />
-            {linkCopied}
-          </button>
+          <ShareButton
+            index={ index }
+            pathname={ pathname }
+            type={ element.type }
+            id={ element.id }
+          />
           {element.tags.map((tag) => (
             <p data-testid={ `${index}-${tag}-horizontal-tag` } key={ tag + index }>
               {tag}
@@ -98,3 +90,13 @@ export default function DoneRecipes() {
     </div>
   );
 }
+
+DoneRecipes.propTypes = {
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
+export default DoneRecipes;
