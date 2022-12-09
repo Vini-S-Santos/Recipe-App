@@ -4,13 +4,15 @@ import renderWithRouter from '../helpers/renderWithRouter';
 import App from '../App';
 import Provider from '../context/Provider';
 
+const start = 'start-recipe-btn';
+
 describe('Testando a página Recipe Details', () => {
   afterEach(() => jest.clearAllMocks());
 
   test('7 - Verifica o funcionamento do botão Push e se a receita é armazenada no localStorage corretamente', async () => {
     const { history } = renderWithRouter(<Provider><App /></Provider>);
     history.push('/drinks/13938/');
-    const startRecipe = await screen.findByTestId('start-recipe-btn');
+    const startRecipe = await screen.findByTestId(start);
     expect(startRecipe).toBeInTheDocument();
     userEvent.click(startRecipe);
     expect(history.location.pathname).toBe('//13938/in-progress');
@@ -25,7 +27,7 @@ describe('Testando a página Recipe Details', () => {
       name: /continue recipe/i,
     })).toBeInTheDocument());
 
-    const button = screen.getByTestId('start-recipe-btn');
+    const button = screen.getByTestId('start');
 
     expect(button).toHaveTextContent('Continue Recipe');
 
@@ -41,7 +43,7 @@ describe('Testando a página Recipe Details', () => {
 
     await waitFor(() => expect(screen.getByText(/continue recipe/i)).toBeInTheDocument());
 
-    const button = screen.getByTestId('start-recipe-btn');
+    const button = screen.getByTestId(start);
 
     expect(button).toHaveTextContent('Continue Recipe');
 
@@ -63,7 +65,7 @@ describe('Testando a página Recipe Details', () => {
     const instructions = screen.getByTestId('instructions');
     const ingredientList = screen.getAllByRole('listitem');
     const recommendations = screen.getAllByRole('link');
-    const buttonStart = screen.getByTestId('start-recipe-btn');
+    const buttonStart = screen.getByTestId(start);
     const corba = screen.getByRole('heading', {
       name: /corba/i,
     });

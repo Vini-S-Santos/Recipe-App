@@ -91,4 +91,13 @@ function DoneRecipes({ history: { location: { pathname } } }) {
   );
 }
 
+DoneRecipes.propTypes = {
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
 export default DoneRecipes;
