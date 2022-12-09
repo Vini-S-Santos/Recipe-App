@@ -6,12 +6,14 @@ import favoriteRecipes from './mocks/favoriteRecipes';
 import App from '../App';
 import Provider from '../context/Provider';
 
+const favorite = '/favorite-recipes';
+
 describe('Testes da página de receitas favoritas', () => {
   it('Verificar se os elementos são renderizados corretamente', async () => {
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
 
     const { history } = renderWithRouter(<Provider><App /></Provider>);
-    history.push('/favorite-recipes');
+    history.push(favorite);
 
     await waitFor(() => expect(screen.getByTestId('filter-by-all-btn')).toBeInTheDocument());
 
@@ -31,7 +33,7 @@ describe('Testes da página de receitas favoritas', () => {
     localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
 
     const { history } = renderWithRouter(<Provider><App /></Provider>);
-    history.push('/favorite-recipes');
+    history.push(favorite);
 
     const favoriteBtn = await screen.findByTestId('0-horizontal-favorite-btn');
 
@@ -49,7 +51,7 @@ describe('Testes da página de receitas favoritas', () => {
     document.execCommand = jest.fn(() => Promise.resolve('Copiado!'));
 
     const { history } = renderWithRouter(<Provider><App /></Provider>);
-    history.push('/favorite-recipes');
+    history.push(favorite);
 
     const shareBtn = await screen.findByTestId('0-horizontal-share-btn');
 
