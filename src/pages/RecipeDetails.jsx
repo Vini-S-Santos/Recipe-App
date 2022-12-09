@@ -32,7 +32,8 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
         const recomendation = await fetchAPIs('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
         setRecomendations([...recomendation.drinks]);
         setDetailedRecipe(returnedRecipe.meals[0]);
-      } else if (pathname.includes('/drinks')) {
+      }
+      if (pathname.includes('/drinks')) {
         setRecipeType('drinks');
         const returnedRecipe = await fetchAPIs(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
         const recomendation = await fetchAPIs('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -47,12 +48,12 @@ function RecipeDetails({ history: { location: { pathname }, push } }) {
     if (!JSON.parse(localStorage.getItem('doneRecipes'))) {
       localStorage.setItem('doneRecipes', JSON.stringify([]));
     }
-    if (!JSON.parse(localStorage.getItem('inProgressRecipes'))) {
-      localStorage.setItem('inProgressRecipes', JSON.stringify({
-        drinks: {},
-        meals: {},
-      }));
-    }
+    // if (!JSON.parse(localStorage.getItem('inProgressRecipes'))) {
+    //   localStorage.setItem('inProgressRecipes', JSON.stringify({
+    //     drinks: {},
+    //     meals: {},
+    //   }));
+    // }
 
     const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
     const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
