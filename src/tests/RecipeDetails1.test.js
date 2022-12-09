@@ -83,4 +83,5 @@ describe('Testando a página Recipe Details', () => {
 
     await waitFor(() => expect(history.location.pathname).toBe('/drinks/13938/in-progress'));
   });
+  //
 });
