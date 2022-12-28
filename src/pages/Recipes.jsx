@@ -38,7 +38,7 @@ function Recipes({ history: { location: { pathname } } }) {
       <section>
         <ButtonFilters recipeType={ recipeType } />
         {
-          !isLoading ? recipes.slice(0, recipeInitialNumbers).map((recipe, index) => (
+          recipes.slice(0, recipeInitialNumbers).map((recipe, index) => (
             <RecipeCard
               key={ index }
               linkTestId={ `${index}-recipe-card` }
@@ -50,7 +50,7 @@ function Recipes({ history: { location: { pathname } } }) {
               recipeName={ recipeType === 'meals' ? recipe.strMeal : recipe.strDrink }
               recipeType={ recipeType }
             />
-          )) : <h1>Loading...</h1>
+          ))
         }
       </section>
       <Footer />
