@@ -1,13 +1,23 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# Project Recipes App
+### _A [Trybe](https://www.betrybe.com/) Project_
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+## O que foi desenvolvido
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+Um Web App *Mobile First* que traz receitas de comidas e bebidas do mundo todo, práticas e fáceis de fazer.
+
+Os dados das receitas vêm de 2 [APIs](#apis-used) distintas, uma para comida e outra para bebida.
+
+---
+## APIs usadas
+### APIMealDB
+
+[TheMealDB](https://www.themealdb.com/) É um banco de dados aberto, mantido pela comunidade, com receitas e ingredientes de todo o mundo.
+
+Os End-Points são bastante ricos, você pode vê-los [aqui](https://www.themealdb.com/api.php)
+
+### A API CockTailDB
+
+[TheCocktailDB](https://www.thecocktaildb.com/) bastante semelhante (mesmo mantido pela mesma comunidade) à API do ThemealDB, só que focado em bebidas.
+End-points [aqui](https://www.thecocktaildb.com/api.php)
+
+---
