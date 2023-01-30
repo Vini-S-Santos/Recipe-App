@@ -21,3 +21,13 @@ Os End-Points são bastante ricos, você pode vê-los [aqui](https://www.themeal
 End-points [aqui](https://www.thecocktaildb.com/api.php)
 
 ---
+
+## Como executar:
+
+1. Instale as dependências e inicialize o projeto.
+* Install dependencies:
+* ```npm install```
+
+2. Run
+* ```npm run```
+
