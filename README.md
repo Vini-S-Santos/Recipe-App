@@ -29,5 +29,5 @@ End-points [aqui](https://www.thecocktaildb.com/api.php)
 * ```npm install```
 
 2. Run
-* ```npm run```
+* ```npm start```
 
